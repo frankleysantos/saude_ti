@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 
 class VinculoController extends Controller
 {
-    protected $plano;
+    protected $vinculo;
 
     public function __construct(VinculoServices $service) {
         $this->middleware('auth:api');

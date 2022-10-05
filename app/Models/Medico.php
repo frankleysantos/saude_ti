@@ -8,4 +8,5 @@ use Illuminate\Database\Eloquent\Model;
 class Medico extends Model
 {
     use HasFactory;
+    protected $fillable = ['espec_codigo', 'med_crm', 'med_nome'];
 }

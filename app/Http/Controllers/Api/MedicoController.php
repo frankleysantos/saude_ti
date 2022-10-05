@@ -3,31 +3,32 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Services\ProcedimentoServices;
+use App\Services\MedicoServices;
 use Illuminate\Http\Request;
 
-class ProcedimentoController extends Controller
+class MedicoController extends Controller
 {
-    protected $procedimento;
+    protected $medico;
 
-    public function __construct(ProcedimentoServices $service) {
+    public function __construct(MedicoServices $service) {
         $this->middleware('auth:api');
-        $this->procedimento = $service;
+        $this->medico = $service;
     }
 
     /**
      * @OA\Post(
-     *   tags={"Procedimento"},
+     *   tags={"Medico"},
      *   security={{"bearer_token":{}}},
-     *   path="/procedimento/store",
-     *   summary="Procedimento store",
+     *   path="/medico/store",
+     *   summary="Medico store",
      *   @OA\RequestBody(
      *     required=true,
      *     @OA\JsonContent(
      *       type="object",
-     *       required={"proc_nome", "proc_valor"},
-     *       @OA\Property(property="proc_nome", type="string"),
-     *       @OA\Property(property="proc_valor", type="float")
+     *       required={"espec_codigo", "med_crm", "med_nome"},
+     *       @OA\Property(property="espec_codigo", type="integer"),
+     *       @OA\Property(property="med_crm", type="string"),
+     *       @OA\Property(property="med_nome", type="string")
      *     )
      *   ),
      *   @OA\Response(
@@ -38,18 +39,18 @@ class ProcedimentoController extends Controller
      *   @OA\Response(response=404, description="Not Found")
      * )
      */
-    public function store(Request $procedimentoRequest) 
+    public function store(Request $medicoRequest) 
     {
-        $procedimento = $this->procedimento->store($procedimentoRequest); 
-        return response()->json($procedimento);
+        $medico = $this->medico->store($medicoRequest); 
+        return response()->json($medico);
     }
 
     /**
      * @OA\Put(
-     *   tags={"Procedimento"},
+     *   tags={"Medico"},
      *   security={{"bearer_token":{}}},
-     *   path="/procedimento/update/{id}",
-     *   summary="Procedimento update",
+     *   path="/medico/update/{id}",
+     *   summary="Medico update",
      *   @OA\Parameter(
      *      name="id",
      *      in="path",
@@ -59,8 +60,9 @@ class ProcedimentoController extends Controller
      *     required=true,
      *     @OA\JsonContent(
      *       type="object",
-     *       @OA\Property(property="proc_nome", type="string"),
-     *       @OA\Property(property="proc_valor", type="float")
+     *       @OA\Property(property="espec_codigo", type="integer"),
+     *       @OA\Property(property="med_crm", type="string"),
+     *       @OA\Property(property="med_nome", type="string")
      *     )
      *   ),
      *   @OA\Response(
@@ -71,18 +73,18 @@ class ProcedimentoController extends Controller
      *   @OA\Response(response=422, description="Unprocessable Entity")
      * )
      */
-    public function update($codigo, Request $procedimentoRequest) 
+    public function update($codigo, Request $medicoRequest) 
     {
-        $procedimento = $this->procedimento->update((int) $codigo, $procedimentoRequest);      
-        return response()->json($procedimento);
+        $medico = $this->medico->update((int) $codigo, $medicoRequest);      
+        return response()->json($medico);
     }
 
     /**
      * @OA\Delete(
-     *   tags={"Procedimento"},
-     *   path="/procedimento/delete/{id}",
+     *   tags={"Medico"},
+     *   path="/medico/delete/{id}",
      *   security={{"bearer_token":{}}},
-     *   summary="Procedimento delete",
+     *   summary="Medico delete",
      *   @OA\Parameter(
      *      name="id",
      *      in="path",
@@ -95,16 +97,16 @@ class ProcedimentoController extends Controller
      */
     public function delete($codigo)
     {
-        $message = $this->procedimento->delete($codigo);    
+        $message = $this->medico->delete($codigo);    
         return response()->json($message);
     }
 
     /**
      * @OA\Get(
-     *   tags={"Procedimento"},
+     *   tags={"Medico"},
      *   security={{"bearer_token":{}}},
-     *   path="/procedimento/show",
-     *   summary="Procedimento show",
+     *   path="/medico/show",
+     *   summary="Medico show",
      *   @OA\Response(
      *     response=200,
      *     description="OK",
@@ -114,7 +116,7 @@ class ProcedimentoController extends Controller
      */
     public function show()
     {
-        $response = $this->procedimento->getAll();
+        $response = $this->medico->getAll();
         return response()->json($response);
     }
 }

@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 
 class EspecialidadeController extends Controller
 {
-    protected $plano;
+    protected $especialidade;
 
     public function __construct(EspecialidadeServices $service) {
         $this->middleware('auth:api');

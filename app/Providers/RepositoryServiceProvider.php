@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Repositories\Contracts\EspecialidadeRepositoryInterface;
+use App\Repositories\Contracts\MedicoRepositoryInterface;
 use App\Repositories\Contracts\PacienteRepositoryInterface;
 use App\Repositories\Contracts\PlanoSaudeRepositoryInterface;
 use App\Repositories\Contracts\ProcedimentoRepositoryInterface;
@@ -10,6 +11,7 @@ use Illuminate\Support\ServiceProvider;
 use App\Repositories\Contracts\UserRepositoryInterface;
 use App\Repositories\Contracts\VinculoRepositoryInterface;
 use App\Repositories\Core\Eloquent\EloquentEspecialidadeRepository;
+use App\Repositories\Core\Eloquent\EloquentMedicoRepository;
 use App\Repositories\Core\Eloquent\EloquentPacienteRepository;
 use App\Repositories\Core\Eloquent\EloquentPlanoSaudeRepository;
 use App\Repositories\Core\Eloquent\EloquentProcedimentoRepository;
@@ -49,6 +51,10 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->bind(
             EspecialidadeRepositoryInterface::class,
             EloquentEspecialidadeRepository::class
+        );
+        $this->app->bind(
+            MedicoRepositoryInterface::class,
+            EloquentMedicoRepository::class
         );
     }
 
