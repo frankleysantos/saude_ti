@@ -315,7 +315,7 @@
                             "schema": {
                                 "properties": {
                                     "espec_codigo": {
-                                        "type": "integer"
+                                        "type": "number"
                                     },
                                     "med_crm": {
                                         "type": "string"

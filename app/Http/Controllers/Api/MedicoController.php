@@ -60,7 +60,7 @@ class MedicoController extends Controller
      *     required=true,
      *     @OA\JsonContent(
      *       type="object",
-     *       @OA\Property(property="espec_codigo", type="integer"),
+     *       @OA\Property(property="espec_codigo", type="number"),
      *       @OA\Property(property="med_crm", type="string"),
      *       @OA\Property(property="med_nome", type="string")
      *     )
