@@ -4,11 +4,13 @@ namespace App\Providers;
 
 use App\Repositories\Contracts\PacienteRepositoryInterface;
 use App\Repositories\Contracts\PlanoSaudeRepositoryInterface;
+use App\Repositories\Contracts\ProcedimentoRepositoryInterface;
 use Illuminate\Support\ServiceProvider;
 use App\Repositories\Contracts\UserRepositoryInterface;
 use App\Repositories\Contracts\VinculoRepositoryInterface;
 use App\Repositories\Core\Eloquent\EloquentPacienteRepository;
 use App\Repositories\Core\Eloquent\EloquentPlanoSaudeRepository;
+use App\Repositories\Core\Eloquent\EloquentProcedimentoRepository;
 use App\Repositories\Core\Eloquent\EloquentUserRepository;
 use App\Repositories\Core\Eloquent\EloquentVinculoRepository;
 
@@ -37,6 +39,10 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->bind(
             VinculoRepositoryInterface::class,
             EloquentVinculoRepository::class
+        );
+        $this->app->bind(
+            ProcedimentoRepositoryInterface::class,
+            EloquentProcedimentoRepository::class
         );
     }
 

@@ -8,4 +8,5 @@ use Illuminate\Database\Eloquent\Model;
 class Procedimento extends Model
 {
     use HasFactory;
+    protected $fillable = ['proc_nome', 'proc_valor'];
 }
