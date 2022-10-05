@@ -99,6 +99,150 @@
                 }
             }
         },
+        "/especialidade/store": {
+            "post": {
+                "tags": [
+                    "Especialidade"
+                ],
+                "summary": "Especialidade store",
+                "operationId": "e50f96d198b7eb17f68b44006d2af1a7",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "espec_nome"
+                                ],
+                                "properties": {
+                                    "espec_nome": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "OK"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer_token": []
+                    }
+                ]
+            }
+        },
+        "/especialidade/update/{id}": {
+            "put": {
+                "tags": [
+                    "Especialidade"
+                ],
+                "summary": "Especialidade update",
+                "operationId": "1d452a57fe01c8ca23294dddc5eac285",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "espec_nome": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer_token": []
+                    }
+                ]
+            }
+        },
+        "/especialidade/delete/{id}": {
+            "delete": {
+                "tags": [
+                    "Especialidade"
+                ],
+                "summary": "Especialidade delete",
+                "operationId": "9dd3258a7c3569435d2f04704ea48bf6",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer_token": []
+                    }
+                ]
+            }
+        },
+        "/especialidade/show": {
+            "get": {
+                "tags": [
+                    "Especialidade"
+                ],
+                "summary": "Especialidade show",
+                "operationId": "3dd15963fe2b0b2dc5b0e3b84784bd9a",
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer_token": []
+                    }
+                ]
+            }
+        },
         "/paciente/store": {
             "post": {
                 "tags": [
