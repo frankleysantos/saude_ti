@@ -243,6 +243,164 @@
                 ]
             }
         },
+        "/medico/store": {
+            "post": {
+                "tags": [
+                    "Medico"
+                ],
+                "summary": "Medico store",
+                "operationId": "2e8964067a4dbe77e1fe0bccc6e84b63",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "espec_codigo",
+                                    "med_crm",
+                                    "med_nome"
+                                ],
+                                "properties": {
+                                    "espec_codigo": {
+                                        "type": "integer"
+                                    },
+                                    "med_crm": {
+                                        "type": "string"
+                                    },
+                                    "med_nome": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "OK"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer_token": []
+                    }
+                ]
+            }
+        },
+        "/medico/update/{id}": {
+            "put": {
+                "tags": [
+                    "Medico"
+                ],
+                "summary": "Medico update",
+                "operationId": "5d993a999fbfd816fea10c2ddc857a40",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "espec_codigo": {
+                                        "type": "integer"
+                                    },
+                                    "med_crm": {
+                                        "type": "string"
+                                    },
+                                    "med_nome": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer_token": []
+                    }
+                ]
+            }
+        },
+        "/medico/delete/{id}": {
+            "delete": {
+                "tags": [
+                    "Medico"
+                ],
+                "summary": "Medico delete",
+                "operationId": "c2dc8235e4c7b13902c185a285b570cd",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer_token": []
+                    }
+                ]
+            }
+        },
+        "/medico/show": {
+            "get": {
+                "tags": [
+                    "Medico"
+                ],
+                "summary": "Medico show",
+                "operationId": "e74b85401f9cfa95c26ae06f71759ebd",
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer_token": []
+                    }
+                ]
+            }
+        },
         "/paciente/store": {
             "post": {
                 "tags": [
