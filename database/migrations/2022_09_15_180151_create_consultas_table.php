@@ -19,6 +19,8 @@ return new class extends Migration
             $table->foreign('proc_codigo')->references('proc_codigo')->on('procedimentos');
             $table->integer('med_codigo')->unsigned();
             $table->foreign('med_codigo')->references('med_codigo')->on('medicos');
+            $table->integer('pac_codigo')->unsigned();
+            $table->foreign('pac_codigo')->references('pac_codigo')->on('pacientes');
             $table->date('data');
             $table->time('hora');
             $table->enum('particular', ['Sim', 'Nao'])->default('Sim');
