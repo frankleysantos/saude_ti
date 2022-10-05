@@ -99,6 +99,186 @@
                 }
             }
         },
+        "/consulta/store": {
+            "post": {
+                "tags": [
+                    "Consulta"
+                ],
+                "summary": "Consulta store",
+                "operationId": "e91a114c0d363a777d6888061c8773aa",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "proc_codigo",
+                                    "med_codigo",
+                                    "data",
+                                    "hora",
+                                    "particular"
+                                ],
+                                "properties": {
+                                    "proc_codigo": {
+                                        "type": "number"
+                                    },
+                                    "med_codigo": {
+                                        "type": "number"
+                                    },
+                                    "data": {
+                                        "type": "string",
+                                        "format": "date",
+                                        "example": "05/06/2022"
+                                    },
+                                    "hora": {
+                                        "type": "string",
+                                        "example": "11:34"
+                                    },
+                                    "particular": {
+                                        "type": "string",
+                                        "example": "Nao"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "OK"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer_token": []
+                    }
+                ]
+            }
+        },
+        "/consulta/update/{id}": {
+            "put": {
+                "tags": [
+                    "Consulta"
+                ],
+                "summary": "Consulta update",
+                "operationId": "165fb7b1ab547932cb27ba25296fb709",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "proc_codigo": {
+                                        "type": "number"
+                                    },
+                                    "med_codigo": {
+                                        "type": "number"
+                                    },
+                                    "data": {
+                                        "type": "string",
+                                        "format": "date",
+                                        "example": "05/06/2022"
+                                    },
+                                    "hora": {
+                                        "type": "string",
+                                        "example": "11:34"
+                                    },
+                                    "particular": {
+                                        "type": "string",
+                                        "example": "Nao"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer_token": []
+                    }
+                ]
+            }
+        },
+        "/consulta/delete/{id}": {
+            "delete": {
+                "tags": [
+                    "Consulta"
+                ],
+                "summary": "Consulta delete",
+                "operationId": "7ff06d232768e9abe9098777b244491b",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer_token": []
+                    }
+                ]
+            }
+        },
+        "/consulta/show": {
+            "get": {
+                "tags": [
+                    "Consulta"
+                ],
+                "summary": "Consulta show",
+                "operationId": "9f94a3752b6d8b69954f44e878e53b93",
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer_token": []
+                    }
+                ]
+            }
+        },
         "/especialidade/store": {
             "post": {
                 "tags": [
