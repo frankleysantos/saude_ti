@@ -167,6 +167,159 @@
                     }
                 ]
             }
+        },
+        "/procedimento/store": {
+            "post": {
+                "tags": [
+                    "Procedimento"
+                ],
+                "summary": "Procedimento store",
+                "operationId": "4becae1ec02cfa4cc253002bf33ca448",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "proc_nome",
+                                    "proc_valor"
+                                ],
+                                "properties": {
+                                    "proc_nome": {
+                                        "type": "string"
+                                    },
+                                    "proc_valor": {
+                                        "type": "number",
+                                        "format": "float"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "OK"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer_token": []
+                    }
+                ]
+            }
+        },
+        "/procedimento/update/{id}": {
+            "put": {
+                "tags": [
+                    "Procedimento"
+                ],
+                "summary": "Procedimento update",
+                "operationId": "1527b1d3ae249f8affbc9e8fea3f8b19",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "proc_nome": {
+                                        "type": "string"
+                                    },
+                                    "proc_valor": {
+                                        "type": "number",
+                                        "format": "float"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer_token": []
+                    }
+                ]
+            }
+        },
+        "/procedimento/delete/{id}": {
+            "delete": {
+                "tags": [
+                    "Procedimento"
+                ],
+                "summary": "Procedimento delete",
+                "operationId": "6ce2c8ca4ef5f6998b0e4f1cc6655d4b",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer_token": []
+                    }
+                ]
+            }
+        },
+        "/procedimento/show": {
+            "get": {
+                "tags": [
+                    "Procedimento"
+                ],
+                "summary": "Procedimento show",
+                "operationId": "e18a21258f496541bc53108cf9ee01ed",
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer_token": []
+                    }
+                ]
+            }
         }
     },
     "components": {
