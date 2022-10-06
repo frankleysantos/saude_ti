@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\MedicoRequest;
 use App\Services\MedicoServices;
 use Illuminate\Http\Request;
 
@@ -39,7 +40,7 @@ class MedicoController extends Controller
      *   @OA\Response(response=404, description="Not Found")
      * )
      */
-    public function store(Request $medicoRequest) 
+    public function store(MedicoRequest $medicoRequest) 
     {
         $medico = $this->medico->store($medicoRequest); 
         return response()->json($medico);
@@ -73,7 +74,7 @@ class MedicoController extends Controller
      *   @OA\Response(response=422, description="Unprocessable Entity")
      * )
      */
-    public function update($codigo, Request $medicoRequest) 
+    public function update($codigo, MedicoRequest $medicoRequest) 
     {
         $medico = $this->medico->update((int) $codigo, $medicoRequest);      
         return response()->json($medico);

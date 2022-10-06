@@ -21,10 +21,10 @@ class PacienteServices
     public function store($request)
     {
         try {            
-            $planoSaude = $request->all();
-            $planoSaude['pac_dataNascimento'] = Helpers::formatDate($planoSaude['pac_dataNascimento']);
-            $planoSaude = $this->repo->store($planoSaude);
-            return $planoSaude;
+            $paciente = $request->all();
+            $paciente['pac_dataNascimento'] = Helpers::formatDate($paciente['pac_dataNascimento']);
+            $paciente = $this->repo->store($paciente);
+            return $paciente;
         } catch (\Exception $e) {
             return $e->getMessage();
         }
@@ -35,6 +35,7 @@ class PacienteServices
     {
         try {
             $paciente = $request->all();
+            $paciente['pac_dataNascimento'] = Helpers::formatDate($paciente['pac_dataNascimento']);
             $pacienteExiste = $this->repo->getEntity('pac_codigo', $codigo);
             if ($pacienteExiste) {
                 $paciente = $this->repo->update('pac_codigo', $codigo, new Request($paciente));
@@ -50,8 +51,8 @@ class PacienteServices
 
 	public function delete($codigo)
     {
-        $planoSaudeExiste = $this->repo->getEntity('pac_codigo', $codigo);
-        if (isset($planoSaudeExiste)) {
+        $pacienteExiste = $this->repo->getEntity('pac_codigo', $codigo);
+        if (isset($pacienteExiste)) {
             $this->repo->delete('pac_codigo', $codigo);
             $message = "Paciente deletado com sucesso.";
         } else {

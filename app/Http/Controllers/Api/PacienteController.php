@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\PacienteRequest;
 use App\Services\PacienteServices;
-use Illuminate\Http\Request;
 
 class PacienteController extends Controller
 {
@@ -38,7 +38,7 @@ class PacienteController extends Controller
      *   @OA\Response(response=404, description="Not Found")
      * )
      */
-    public function store(Request $pacienteRequest) 
+    public function store(PacienteRequest $pacienteRequest) 
     {
         $paciente = $this->paciente->store($pacienteRequest); 
         return response()->json($paciente);
@@ -72,7 +72,7 @@ class PacienteController extends Controller
      * )
      */
 
-    public function update($codigo, Request $pacienteRequest) 
+    public function update($codigo, PacienteRequest $pacienteRequest) 
     {
         $paciente = $this->paciente->update((int) $codigo, $pacienteRequest);      
         return response()->json($paciente);

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\PlanoSaudeRequest;
 use App\Http\Resources\PlanoSaude\PlanoSaudeCollection;
 use App\Services\PlanoSaudeServices;
 use Illuminate\Http\Request;
@@ -40,7 +41,7 @@ class PlanoSaudeController extends Controller
      * )
      */
 
-    public function store(Request $planoSaudeRequest) 
+    public function store(PlanoSaudeRequest $planoSaudeRequest) 
     {
         $plano = $this->plano->store($planoSaudeRequest); 
         return response()->json($plano);
@@ -73,7 +74,7 @@ class PlanoSaudeController extends Controller
      *   @OA\Response(response=422, description="Unprocessable Entity")
      * )
      */
-    public function update($codigo, Request $planoSaudeRequest) 
+    public function update($codigo, PlanoSaudeRequest $planoSaudeRequest) 
     {
         $plano = $this->plano->update((int) $codigo, $planoSaudeRequest);      
         return response()->json($plano);

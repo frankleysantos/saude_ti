@@ -3,8 +3,11 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\EspecialidadeRequest;
+use App\Http\Resources\Especialidade\EspecialidadeCollection;
 use App\Services\EspecialidadeServices;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 
 class EspecialidadeController extends Controller
 {
@@ -37,10 +40,10 @@ class EspecialidadeController extends Controller
      *   @OA\Response(response=404, description="Not Found")
      * )
      */
-    public function store(Request $especialidadeRequest) 
+    public function store(EspecialidadeRequest $especialidadeRequest) 
     {
         $especialidade = $this->especialidade->store($especialidadeRequest); 
-        return response()->json($especialidade);
+        return response()->json($especialidade, Response::HTTP_CREATED);
     }
 
     /**
@@ -69,7 +72,7 @@ class EspecialidadeController extends Controller
      *   @OA\Response(response=422, description="Unprocessable Entity")
      * )
      */
-    public function update($codigo, Request $especialidadeRequest) 
+    public function update($codigo, EspecialidadeRequest $especialidadeRequest) 
     {
         $especialidade = $this->especialidade->update((int) $codigo, $especialidadeRequest);      
         return response()->json($especialidade);
@@ -113,6 +116,6 @@ class EspecialidadeController extends Controller
     public function show()
     {
         $response = $this->especialidade->getAll();
-        return response()->json($response);
+        return response()->json(new EspecialidadeCollection($response, ['notPagination' => true]), Response::HTTP_OK);
     }
 }
