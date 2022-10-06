@@ -15,7 +15,7 @@ class ConsultaServices
     }
     public function getAll()
     {
-        return $this->repo->getAll();
+        return $this->repo->with(['paciente', 'medico', 'procedimento'])->get();
     }
 
     public function store($request)
@@ -35,6 +35,7 @@ class ConsultaServices
     {
         try {
             $consulta = $request->all();
+            $consulta['data'] = Helpers::formatDate($consulta['data']);
             $consultaExiste = $this->repo->getEntity('cons_codigo', $codigo);
             if ($consultaExiste) {
                 $consulta = $this->repo->update('cons_codigo', $codigo, new Request($consulta));

@@ -26,8 +26,8 @@ class PacienteController extends Controller
      *     @OA\JsonContent(
      *       type="object",
      *       required={"pac_nome", "pac_dataNascimento"},
-     *       @OA\Property(property="pac_nome", type="string"),
-     *       @OA\Property(property="pac_dataNascimento", type="string")
+     *       @OA\Property(property="pac_nome", type="string", example="Fulano Pereira dos Santos"),
+     *       @OA\Property(property="pac_dataNascimento", type="date", example="16/08/1989")
      *     )
      *   ),
      *   @OA\Response(
@@ -44,12 +44,56 @@ class PacienteController extends Controller
         return response()->json($paciente);
     }
 
+    /**
+     * @OA\Put(
+     *   tags={"Paciente"},
+     *   security={{"bearer_token":{}}},
+     *   path="/paciente/update/{id}",
+     *   summary="Paciente update",
+     *   @OA\Parameter(
+     *      name="id",
+     *      in="path",
+     *      required=true,
+     *   ),
+     *   @OA\RequestBody(
+     *     required=true,
+     *     @OA\JsonContent(
+     *       type="object",
+     *       @OA\Property(property="pac_nome", type="string", example="Fulano Pereira dos Santos"),
+     *       @OA\Property(property="pac_dataNascimento", type="date", example="16/08/1989")
+     *     )
+     *   ),
+     *   @OA\Response(
+     *     response=200,
+     *     description="OK",
+     *   ),
+     *   @OA\Response(response=404, description="Not Found"),
+     *   @OA\Response(response=422, description="Unprocessable Entity")
+     * )
+     */
+
     public function update($codigo, Request $pacienteRequest) 
     {
         $paciente = $this->paciente->update((int) $codigo, $pacienteRequest);      
         return response()->json($paciente);
     }
 
+    /**
+     * @OA\Delete(
+     *   tags={"Paciente"},
+     *   path="/paciente/delete/{id}",
+     *   security={{"bearer_token":{}}},
+     *   summary="Paciente delete",
+     *   @OA\Parameter(
+     *      name="id",
+     *      in="path",
+     *      required=true,
+     *   ),
+     *   @OA\Response(response=200, description="OK"),
+     *   @OA\Response(response=401, description="Unauthorized"),
+     *   @OA\Response(response=404, description="Not Found")
+     * )
+     */
     public function delete($codigo)
     {
         $message = $this->paciente->delete($codigo);    

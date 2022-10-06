@@ -19,7 +19,7 @@ return new class extends Migration
             $table->foreign('pac_codigo')->references('pac_codigo')->on('pacientes');
             $table->integer('plan_codigo')->unsigned();
             $table->foreign('plan_codigo')->references('plan_codigo')->on('plano_saudes');
-            $table->string('nr_contrato')->unique();
+            $table->string('nr_contrato');
             $table->timestamps();
         });
     }

@@ -112,6 +112,7 @@
                         "application/json": {
                             "schema": {
                                 "required": [
+                                    "pac_codigo",
                                     "proc_codigo",
                                     "med_codigo",
                                     "data",
@@ -119,6 +120,9 @@
                                     "particular"
                                 ],
                                 "properties": {
+                                    "pac_codigo": {
+                                        "type": "number"
+                                    },
                                     "proc_codigo": {
                                         "type": "number"
                                     },
@@ -182,6 +186,9 @@
                         "application/json": {
                             "schema": {
                                 "properties": {
+                                    "pac_codigo": {
+                                        "type": "number"
+                                    },
                                     "proc_codigo": {
                                         "type": "number"
                                     },
@@ -599,10 +606,13 @@
                                 ],
                                 "properties": {
                                     "pac_nome": {
-                                        "type": "string"
+                                        "type": "string",
+                                        "example": "Fulano Pereira dos Santos"
                                     },
                                     "pac_dataNascimento": {
-                                        "type": "string"
+                                        "type": "string",
+                                        "format": "date",
+                                        "example": "16/08/1989"
                                     }
                                 },
                                 "type": "object"
@@ -628,6 +638,91 @@
                 ]
             }
         },
+        "/paciente/update/{id}": {
+            "put": {
+                "tags": [
+                    "Paciente"
+                ],
+                "summary": "Paciente update",
+                "operationId": "ab6127ae7cafe3a8619783e507224557",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "pac_nome": {
+                                        "type": "string",
+                                        "example": "Fulano Pereira dos Santos"
+                                    },
+                                    "pac_dataNascimento": {
+                                        "type": "string",
+                                        "format": "date",
+                                        "example": "16/08/1989"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer_token": []
+                    }
+                ]
+            }
+        },
+        "/paciente/delete/{id}": {
+            "delete": {
+                "tags": [
+                    "Paciente"
+                ],
+                "summary": "Paciente delete",
+                "operationId": "a6ac4a6be77b3ed89894ffc1ca821e5f",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer_token": []
+                    }
+                ]
+            }
+        },
         "/paciente/show": {
             "get": {
                 "tags": [
@@ -635,6 +730,161 @@
                 ],
                 "summary": "Paciente show",
                 "operationId": "5073264e17dc29cea047696ff50d2b21",
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer_token": []
+                    }
+                ]
+            }
+        },
+        "/plano-saude/store": {
+            "post": {
+                "tags": [
+                    "Plano de Saúde"
+                ],
+                "summary": "Plano de Saúde store",
+                "operationId": "ed0ffcdaee82047faeebf7f363682418",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "plano_descricao",
+                                    "plano_telefone"
+                                ],
+                                "properties": {
+                                    "plano_descricao": {
+                                        "type": "string",
+                                        "example": "Unimed"
+                                    },
+                                    "plano_telefone": {
+                                        "type": "string",
+                                        "example": "(33) 3522-1526"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "OK"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer_token": []
+                    }
+                ]
+            }
+        },
+        "/plano-saude/update/{id}": {
+            "put": {
+                "tags": [
+                    "Plano de Saúde"
+                ],
+                "summary": "Plano de Saúde update",
+                "operationId": "f8b5f80bfd8527533ee1428562a27018",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "plano_descricao": {
+                                        "type": "string",
+                                        "example": "Unimed"
+                                    },
+                                    "plano_telefone": {
+                                        "type": "string",
+                                        "example": "(33) 3522-1526"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer_token": []
+                    }
+                ]
+            }
+        },
+        "/plano-saude/delete/{id}": {
+            "delete": {
+                "tags": [
+                    "Plano de Saúde"
+                ],
+                "summary": "Plano de Saúde delete",
+                "operationId": "657f1ba9d9ca203fd7761b9eebca9e58",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer_token": []
+                    }
+                ]
+            }
+        },
+        "/plano-saude/show": {
+            "get": {
+                "tags": [
+                    "Plano de Saúde"
+                ],
+                "summary": "Plano de Saúde show",
+                "operationId": "8f6a9b5889490c7ae4117a4e2e2a12f2",
                 "responses": {
                     "200": {
                         "description": "OK"
@@ -788,6 +1038,166 @@
                 ],
                 "summary": "Procedimento show",
                 "operationId": "e18a21258f496541bc53108cf9ee01ed",
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer_token": []
+                    }
+                ]
+            }
+        },
+        "/vinculo/store": {
+            "post": {
+                "tags": [
+                    "Vinculo"
+                ],
+                "summary": "Vinculo store",
+                "operationId": "08ce6c8545164a148796a952c28aef94",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "pac_codigo",
+                                    "plan_codigo",
+                                    "nr_contrato"
+                                ],
+                                "properties": {
+                                    "pac_codigo": {
+                                        "type": "number"
+                                    },
+                                    "plan_codigo": {
+                                        "type": "number"
+                                    },
+                                    "nr_contrato": {
+                                        "type": "string",
+                                        "example": "148956"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "OK"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer_token": []
+                    }
+                ]
+            }
+        },
+        "/vinculo/update/{id}": {
+            "put": {
+                "tags": [
+                    "Vinculo"
+                ],
+                "summary": "Vinculo update",
+                "operationId": "0bb8306b0147068f3a39217a53abb392",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "pac_codigo": {
+                                        "type": "number"
+                                    },
+                                    "plan_codigo": {
+                                        "type": "number"
+                                    },
+                                    "nr_contrato": {
+                                        "type": "string",
+                                        "example": "148956"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer_token": []
+                    }
+                ]
+            }
+        },
+        "/vinculo/delete/{id}": {
+            "delete": {
+                "tags": [
+                    "Vinculo"
+                ],
+                "summary": "Vinculo delete",
+                "operationId": "dbb163a4641eb4778dbf81e2835884c8",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer_token": []
+                    }
+                ]
+            }
+        },
+        "/vinculo/show": {
+            "get": {
+                "tags": [
+                    "Vinculo"
+                ],
+                "summary": "Vinculo show",
+                "operationId": "8bd0895d9284f618a64b5df1458a0a59",
                 "responses": {
                     "200": {
                         "description": "OK"

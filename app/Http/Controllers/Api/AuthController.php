@@ -63,7 +63,7 @@ class AuthController extends Controller
      */
     public function register(Request $request) {
         $response = $this->user->register($request);
-        event(new NewUser($request->all()));
+        // event(new NewUser($request->all()));
         return response()->json($response);
     }
 

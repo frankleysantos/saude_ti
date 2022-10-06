@@ -7,7 +7,7 @@ Route::group([
     'prefix' => 'auth/paciente'
 ], function ($router) {
     Route::post('/store', [PacienteController::class, 'store']);
-    Route::post('/update/{id}', [PacienteController::class, 'update']);
+    Route::put('/update/{id}', [PacienteController::class, 'update']);
     Route::delete('/delete/{id}', [PacienteController::class, 'delete']); 
     Route::get('/show', [PacienteController::class, 'show'])->name('api.client.show'); 
 });

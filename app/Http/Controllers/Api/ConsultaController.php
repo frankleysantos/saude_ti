@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\Consulta\ConsultaCollection;
 use App\Services\ConsultaServices;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 
 class ConsultaController extends Controller
 {
@@ -25,7 +27,8 @@ class ConsultaController extends Controller
      *     required=true,
      *     @OA\JsonContent(
      *       type="object",
-     *       required={"proc_codigo", "med_codigo", "data", "hora", "particular"},
+     *       required={"pac_codigo", "proc_codigo", "med_codigo", "data", "hora", "particular"},
+     *       @OA\Property(property="pac_codigo", type="number"),
      *       @OA\Property(property="proc_codigo", type="number"),
      *       @OA\Property(property="med_codigo", type="number"),
      *       @OA\Property(property="data", type="date", example="05/06/2022"),
@@ -44,7 +47,7 @@ class ConsultaController extends Controller
     public function store(Request $consultaRequest) 
     {
         $consulta = $this->consulta->store($consultaRequest); 
-        return response()->json($consulta);
+        return response()->json($consulta, Response::HTTP_CREATED);
     }
 
     /**
@@ -62,6 +65,7 @@ class ConsultaController extends Controller
      *     required=true,
      *     @OA\JsonContent(
      *       type="object",
+     *       @OA\Property(property="pac_codigo", type="number"),
      *       @OA\Property(property="proc_codigo", type="number"),
      *       @OA\Property(property="med_codigo", type="number"),
      *       @OA\Property(property="data", type="date", example="05/06/2022"),
@@ -80,7 +84,7 @@ class ConsultaController extends Controller
     public function update($codigo, Request $consultaRequest) 
     {
         $consulta = $this->consulta->update((int) $codigo, $consultaRequest);      
-        return response()->json($consulta);
+        return response()->json($consulta, Response::HTTP_OK);
     }
 
     /**
@@ -102,7 +106,7 @@ class ConsultaController extends Controller
     public function delete($codigo)
     {
         $message = $this->consulta->delete($codigo);    
-        return response()->json($message);
+        return response()->json($message, Response::HTTP_OK);
     }
 
     /**
@@ -121,6 +125,6 @@ class ConsultaController extends Controller
     public function show()
     {
         $response = $this->consulta->getAll();
-        return response()->json($response);
+        return response()->json(new ConsultaCollection($response, ['notPagination' => true]), Response::HTTP_OK);
     }
 }
