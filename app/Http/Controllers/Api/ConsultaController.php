@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\ConsultaRequest;
 use App\Http\Resources\Consulta\ConsultaCollection;
 use App\Services\ConsultaServices;
 use Illuminate\Http\Request;
@@ -44,7 +45,7 @@ class ConsultaController extends Controller
      *   @OA\Response(response=404, description="Not Found")
      * )
      */
-    public function store(Request $consultaRequest) 
+    public function store(ConsultaRequest $consultaRequest) 
     {
         $consulta = $this->consulta->store($consultaRequest); 
         return response()->json($consulta, Response::HTTP_CREATED);
@@ -81,7 +82,7 @@ class ConsultaController extends Controller
      *   @OA\Response(response=422, description="Unprocessable Entity")
      * )
      */
-    public function update($codigo, Request $consultaRequest) 
+    public function update($codigo, ConsultaRequest $consultaRequest) 
     {
         $consulta = $this->consulta->update((int) $codigo, $consultaRequest);      
         return response()->json($consulta, Response::HTTP_OK);

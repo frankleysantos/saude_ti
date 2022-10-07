@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\ProcedimentoRequest;
 use App\Services\ProcedimentoServices;
 use Illuminate\Http\Request;
 
@@ -38,7 +39,7 @@ class ProcedimentoController extends Controller
      *   @OA\Response(response=404, description="Not Found")
      * )
      */
-    public function store(Request $procedimentoRequest) 
+    public function store(ProcedimentoRequest $procedimentoRequest) 
     {
         $procedimento = $this->procedimento->store($procedimentoRequest); 
         return response()->json($procedimento);
@@ -71,7 +72,7 @@ class ProcedimentoController extends Controller
      *   @OA\Response(response=422, description="Unprocessable Entity")
      * )
      */
-    public function update($codigo, Request $procedimentoRequest) 
+    public function update($codigo, ProcedimentoRequest $procedimentoRequest) 
     {
         $procedimento = $this->procedimento->update((int) $codigo, $procedimentoRequest);      
         return response()->json($procedimento);
